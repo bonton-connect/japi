@@ -1,6 +1,6 @@
 <?php
 
-namespace BontonConnect\Japi;
+namespace Bonton\Japi;
 
 use Bonton\Japi\Yieldables\Relationship;
 

@@ -1,5 +1,5 @@
 <?php
-namespace BontonConnect\Japi;
+namespace Bonton\Japi;
 
 use Exception;
 use Generator;
