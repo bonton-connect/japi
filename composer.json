@@ -1,0 +1,21 @@
+{
+    "name": "bonton/japi",
+    "description": "A JSON:API server implementation for Laravel.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Omran Jamal",
+            "email": "o.jamal97@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Bonton\\Japi\\": "src/"
+        }
+    },
+    "require": {
+        "laravel/framework": ">=7.0"
+    }
+}
