@@ -9,7 +9,6 @@
             "email": "o.jamal97@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Bonton\\Japi\\": "src/"
