@@ -758,7 +758,7 @@ abstract class Controller extends BaseController
         $relationships = $req->input('data.relationships', []);
         $relationships = $this->getRelationshipResources($relationships);
 
-        $id = $controller->create($req, $req->input('data', []), $relationships);
+        $id = $controller->create($req, $req->input('data.attributes', []), $relationships);
 
         return $this->singleRequested($req, $resource_type, $id, $included_relationships, $res_fields);
     }
@@ -778,10 +778,10 @@ abstract class Controller extends BaseController
             throw new ResourceNotFound(['type' => $resource_type, 'id' => $id]);
         }
 
-        $relationships = $req->input('relationships');
+        $relationships = $req->input('data.relationships', []);
         $relationships = $this->getRelationshipResources($relationships);
 
-        $controller->update($req, $record->record, $req->input('data', []), $relationships);
+        $controller->update($req, $record->record, $req->input('data.attributes', []), $relationships);
 
         return $this->singleRequested($req, $resource_type, $id, $included_relationships, $res_fields);
     }
@@ -841,7 +841,7 @@ abstract class Controller extends BaseController
 
         $relationships = $this->getRelationshipResources($relationships);
 
-        $controller->addRelations($record, $relationships);
+        $controller->addRelations($record->record, $relationships);
 
         return $this->indexRelationship($req, $resource_type, $resource_identifier, $relation_name, $included_relationships, $res_fields);
     }
@@ -869,7 +869,7 @@ abstract class Controller extends BaseController
 
         $relationships = $this->getRelationshipResources($relationships);
 
-        $controller->updateRelations($record, $relationships);
+        $controller->updateRelations($record->record, $relationships);
 
         return $this->indexRelationship($req, $resource_type, $resource_identifier, $relation_name, $included_relationships, $res_fields);
     }
@@ -897,7 +897,7 @@ abstract class Controller extends BaseController
 
         $relationships = $this->getRelationshipResources($relationships);
 
-        $controller->deleteRelations($record, $relationships);
+        $controller->deleteRelations($record->record, $relationships);
 
         return $this->indexRelationship($req, $resource_type, $resource_identifier, $relation_name, $included_relationships, $res_fields);
     }
