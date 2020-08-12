@@ -13,14 +13,31 @@ use Illuminate\Http\Request;
 
 
 abstract class ResourceController {
+    protected $type = false;
+
+    public function type($type = false): string
+    {
+        if ($type && !$this->type) {
+            $this->type = $type;
+        }
+
+        if (!$this->type) {
+            $this->type = strtolower(get_class($this));
+        }
+
+        return $this->type;
+    }
+
+    public function getIdentifier($obj): string {
+        return "".$obj->id;
+    }
+
     abstract public function relationships(): array;
 
     abstract public function defaultFields(): array;
     abstract public function defaultIncludes(): array;
 
     abstract public function getAttributes($obj, $fields = []);
-    abstract public function getIdentifier($obj): string;
-    abstract public function type(): string;
 
     abstract public function index($req, $page = null);
     abstract public function single($req, string $id);

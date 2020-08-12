@@ -54,6 +54,7 @@ abstract class Controller extends BaseController
 
         if (!isset($this->controllers[$res])) {
             $this->controllers[$res] = resolve($this->resources[$res]);
+            $this->controllers[$res]->type($res);
         }
 
         return $this->controllers[$res];
@@ -754,7 +755,7 @@ abstract class Controller extends BaseController
         $id = null;
         $controller = $this->getResourceController($resource_type);
 
-        $relationships = $req->input('relationships');
+        $relationships = $req->input('data.relationships', []);
         $relationships = $this->getRelationshipResources($relationships);
 
         $id = $controller->create($req, $req->input('data', []), $relationships);
